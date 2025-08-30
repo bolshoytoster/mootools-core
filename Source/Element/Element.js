@@ -1002,7 +1002,8 @@ Element.implement({
 	},
 
 	retrieve: function(property, dflt){
-		var storage = get(Slick.uidOf(this)), prop = storage[property];
+		if (!this.uniqueNumber || !storage[this.uniqueNumber]) return;
+		var storage = storage[this.uniqueNumber], prop = storage[property];
 		if (dflt != null && prop == null) prop = storage[property] = dflt;
 		return prop != null ? prop : null;
 	},
